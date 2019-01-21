@@ -8,12 +8,16 @@ public class SpikesTrap : TrapBaseClass {
     private Vector2 starting_position = Vector2.zero;
     private float activation_time = 0.0f;
     private Animator m_animator;
+    public bool isAnimated = true;
     
     public void Awake()
     {
         starting_position = transform.position;
-        m_animator = GetComponent<Animator>();
-        m_animator.Play("Idle");
+        if (isAnimated)
+        {
+            m_animator = GetComponent<Animator>();
+            m_animator.Play("Idle");
+        }
     }
 
     override public void childUpdate()
@@ -35,7 +39,8 @@ public class SpikesTrap : TrapBaseClass {
             {
                 transform.position = starting_position;
                 state = TrapState.INACTIVE;
-                m_animator.Play("Idle");
+                if (isAnimated)
+                    m_animator.Play("Idle");
             }
             else
                 transform.position = Vector2.Lerp(starting_position + displacement, starting_position, (Time.time - reset_timer) / displacement_time);
@@ -48,7 +53,9 @@ public class SpikesTrap : TrapBaseClass {
         {
             state = TrapState.ACTIVATING;
             activation_time = Time.time;
-            m_animator.Play("SpikeAnim");
+
+            if (isAnimated)
+                m_animator.Play("SpikeAnim");
         }
     }
 
@@ -56,7 +63,9 @@ public class SpikesTrap : TrapBaseClass {
     {
         transform.position = starting_position;
         state = TrapState.INACTIVE;
-        m_animator.Play("Idle");
+
+        if (isAnimated)
+            m_animator.Play("Idle");
     }
     
 }

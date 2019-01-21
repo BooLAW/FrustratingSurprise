@@ -150,6 +150,7 @@ MonoBehaviour:
   state: 0
   displacement: {x: -5, y: 0}
   displacement_time: 0.5
+  isAnimated: 1
 --- !u!212 &212820217496635926
 SpriteRenderer:
   m_ObjectHideFlags: 1

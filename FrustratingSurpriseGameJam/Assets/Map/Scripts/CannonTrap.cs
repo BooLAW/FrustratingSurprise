@@ -17,7 +17,7 @@ public class CannonTrap : TrapBaseClass
         if (state == TrapState.ACTIVATING && Time.time > last_shot_time + shot_timer)
         {
             GameObject shot = (GameObject)Instantiate(projectile);
-            shot.transform.position = transform.position;
+            shot.transform.position = new Vector2(transform.position.x, transform.position.y + 0.7f);
             shot.GetComponent<BaseShotClass>().direction = shot_direction.normalized;
             last_shot_time = Time.time;
             shots_taken++;
