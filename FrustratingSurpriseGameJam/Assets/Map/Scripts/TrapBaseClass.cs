@@ -18,9 +18,11 @@ public abstract class TrapBaseClass : MonoBehaviour {
         
         if(state == TrapState.ACTIVE)
         {
-            reset_timer += Time.deltaTime;
-            if (reset_timer > reset_time)
+            if (Time.time > reset_time + reset_timer)
+            {
                 state = TrapState.DEACTIVATING;
+                reset_timer = Time.time;
+            }
         }
 	}
 
