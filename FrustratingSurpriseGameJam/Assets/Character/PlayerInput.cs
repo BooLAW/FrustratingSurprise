@@ -27,12 +27,13 @@ public class PlayerInput : MonoBehaviour {
     {
         // Read the inputs.
         bool crouch = Input.GetKey(KeyCode.LeftControl);
+        bool climb = Input.GetKey(KeyCode.LeftShift);
         float h = CrossPlatformInputManager.GetAxis("Horizontal");
 
         if (CrossPlatformInputManager.GetAxis("Vertical") > 0 && jump == 1)
             jump = 2;
 
-        controller.Move(h, crouch, jump);
+        controller.Move(h, crouch, jump,climb);
         jump = 0;
     }
 }
