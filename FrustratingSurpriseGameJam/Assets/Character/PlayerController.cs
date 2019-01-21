@@ -25,14 +25,15 @@ public class PlayerController : MonoBehaviour {
         m_Anim = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<BoxCollider2D>();
+        MapLayer = LayerMask.GetMask("MapLayer");
     }
 
 
 
     private void FixedUpdate()
     {
-        RaycastHit2D[] right_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x + m_collider.size.x / 2, transform.position.y), Vector2.down, m_collider.size.y / 2, MapLayer);
-        RaycastHit2D[] left_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x - m_collider.size.x / 2, transform.position.y), Vector2.down, m_collider.size.y / 2, MapLayer);
+        RaycastHit2D[] right_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x + m_collider.size.x / 2, transform.position.y), Vector2.down, m_collider.size.y / 2 + 1, MapLayer);
+        RaycastHit2D[] left_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x - m_collider.size.x / 2, transform.position.y), Vector2.down, m_collider.size.y / 2 + 1, MapLayer);
 
         Grounded = (right_raycast.Length > 0 || left_raycast.Length > 0);
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, m_collider.size, 0, MapLayer);
@@ -45,11 +46,12 @@ public class PlayerController : MonoBehaviour {
 
     public void Move(float move, bool crouch_pressed, int jump)
     {
+        Crouching = crouch_pressed;
         // If crouching, check to see if the character can stand up
         if (!crouch_pressed && m_Anim.GetBool("Crouch"))
         {
-            RaycastHit2D[] right_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x + m_collider.size.x / 2, transform.position.y), Vector2.up, m_collider.size.y / 2, MapLayer);
-            RaycastHit2D[] left_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x - m_collider.size.x / 2, transform.position.y), Vector2.up, m_collider.size.y / 2, MapLayer);
+            RaycastHit2D[] right_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x + m_collider.size.x / 2, transform.position.y), Vector2.up, m_collider.size.y / 2 + 1, MapLayer);
+            RaycastHit2D[] left_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x - m_collider.size.x / 2, transform.position.y), Vector2.up, m_collider.size.y / 2 + 1, MapLayer);
 
             Crouching = (right_raycast.Length > 0 || left_raycast.Length > 0);
         }
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour {
         {
             Grounded = false;
             m_Anim.SetBool("Ground", false);
-            m_Rigidbody2D.AddForce(new Vector2(0f, jump == 1 ? JumpForce : LightJumpForce));
+            m_Rigidbody2D.AddForce(new Vector2(0f, jump == 1 ? LightJumpForce : JumpForce));
         }
         else
             jump = 0;

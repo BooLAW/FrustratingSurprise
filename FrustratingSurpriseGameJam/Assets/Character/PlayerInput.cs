@@ -10,10 +10,6 @@ public class PlayerInput : MonoBehaviour {
     {
         controller = GetComponent<PlayerController>();
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
 
     private void Update()
     {
@@ -21,8 +17,6 @@ public class PlayerInput : MonoBehaviour {
         {
             // Read the jump input in Update so button presses aren't missed.
             if (CrossPlatformInputManager.GetButtonDown("Jump"))
-                jump = 2;
-            else if (CrossPlatformInputManager.GetButton("Jump"))
                 jump = 1;
 
         }
@@ -34,7 +28,10 @@ public class PlayerInput : MonoBehaviour {
         // Read the inputs.
         bool crouch = Input.GetKey(KeyCode.LeftControl);
         float h = CrossPlatformInputManager.GetAxis("Horizontal");
-        // Pass all parameters to the character control script.
+
+        if (CrossPlatformInputManager.GetAxis("Vertical") > 0 && jump == 1)
+            jump = 2;
+
         controller.Move(h, crouch, jump);
         jump = 0;
     }

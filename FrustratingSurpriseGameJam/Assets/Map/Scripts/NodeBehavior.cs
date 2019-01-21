@@ -12,7 +12,7 @@ public class NodeBehavior : MonoBehaviour
         nodeController = GameObject.Find("GameController").GetComponent<NodeController>();
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Player")
             nodeController.OnNodeActivated(this);
