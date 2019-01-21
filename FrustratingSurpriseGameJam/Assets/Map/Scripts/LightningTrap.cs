@@ -6,7 +6,6 @@ public class LightningTrap : TrapBaseClass
 {
     private BoxCollider2D death_collider;
     private SpriteRenderer spriteRenderer;
-
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

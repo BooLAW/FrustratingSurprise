@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float CrouchSpeedMultiplier = 0.4f;     // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] public float JumpForce = 400f;                  // Amount of force added when the player jumps.
     [SerializeField] public float LightJumpForce = 200f;                  // Amount of force added when the player jumps.
-    
+    [SerializeField] public float ClimbSpeed = 6f;
     [SerializeField] private LayerMask MapLayer;                  // A mask determining what is ground to the character
     private Animator m_Anim;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
@@ -49,8 +49,14 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    public void Move(float move, bool crouch_pressed, int jump)
+    public void Move(float move, bool crouch_pressed, int jump,bool on_ladder)
     {
+        if(on_ladder)
+        {
+                    m_Rigidbody2D.velocity = new Vector2(0, ClimbSpeed);
+            return;
+        }
+
         Crouching = crouch_pressed;
         // If crouching, check to see if the character can stand up
         if (!crouch_pressed && m_Anim.GetBool("Crouch"))
@@ -98,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         }
  
     }
-
+    public bool OnLadder { get; set; }
     public void Die()
     {
         death_count++;
