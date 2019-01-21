@@ -8,6 +8,7 @@ public abstract class TrapBaseClass : MonoBehaviour {
     
     public float reset_timer = 0.0f;
     public float reset_time = 1000.0f;
+    public bool collider_kills = true;
 
     public TrapState state = TrapState.INACTIVE;
     
@@ -25,7 +26,7 @@ public abstract class TrapBaseClass : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.name == "Player")
+        if(col.gameObject.name == "Player" && collider_kills)
         {
             col.gameObject.GetComponent<PlayerController>().Die();
         }
