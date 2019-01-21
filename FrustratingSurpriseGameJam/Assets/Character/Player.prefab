@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609131115892654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.268, y: 8.9814, z: 0}
+  m_LocalPosition: {x: -6.853436, y: -0.6, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
   - {fileID: 4217727152364230}
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 10
   CrouchSpeedMultiplier: 0.4
-  JumpForce: 400
-  LightJumpForce: 200
+  JumpForce: 1000
+  LightJumpForce: 500
   MapLayer:
     serializedVersion: 2
     m_Bits: 0
