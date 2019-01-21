@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public enum Direction { LEFT, RIGHT, UP, DOWN, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT };
+    public enum Direction { LEFT, RIGHT, UP, DOWN, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT, DEAD };
     [SerializeField] public float MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
     [SerializeField] public float CrouchSpeedMultiplier = 0.4f;     // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] public float JumpForce = 400f;                  // Amount of force added when the player jumps.
@@ -91,8 +91,14 @@ public class PlayerController : MonoBehaviour {
             else if (jump > 0)  direction = Direction.UP_LEFT;
             else                direction = Direction.LEFT;
         }
-        
  
+    }
+
+    public void Die()
+    {
+        direction = Direction.DEAD;
+        transform.position = GameObject.Find("StartingPoint").transform.position;
+        GameObject.Find("GameController").GetComponent<GameController>().ResetLevel();
     }
     
 }
