@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     private bool Crouching = false;
     private Direction direction;
 
+    public int death_count = 0;
+
     // Use this for initialization
     private void Awake () {
 
@@ -41,6 +43,9 @@ public class PlayerController : MonoBehaviour {
 
         // Set the vertical animation
         m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+
+        if (transform.position.y < 0)
+            Die();
     }
 
 
@@ -96,6 +101,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Die()
     {
+        death_count++;
         direction = Direction.DEAD;
         transform.position = GameObject.Find("StartingPoint").transform.position;
         GameObject.Find("GameController").GetComponent<GameController>().ResetLevel();

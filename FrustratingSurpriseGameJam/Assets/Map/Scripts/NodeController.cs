@@ -3,6 +3,12 @@
 public class NodeController : MonoBehaviour
 {
     private int current_node = 0;
+    private int node_num = 0;
+
+    public void Awake()
+    {
+        node_num =  GameObject.FindGameObjectsWithTag("Node").Length;
+    }
     
     public void OnNodeActivated(NodeBehavior node)
     {
@@ -10,6 +16,8 @@ public class NodeController : MonoBehaviour
         {
             node.activated = true;
             current_node++;
+            if (current_node == node_num)
+                gameObject.GetComponent<GameController>().LevelComplete();
         }
     }
 
