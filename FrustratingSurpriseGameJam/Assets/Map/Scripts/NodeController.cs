@@ -15,7 +15,9 @@ public class NodeController : MonoBehaviour
         if (node.id == current_node)
         {
             node.activated = true;
+            node.spriteRenderer.sprite = node.sprite_on;
             current_node++;
+
             if (current_node == node_num)
                 gameObject.GetComponent<GameController>().LevelComplete();
         }

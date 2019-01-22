@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     
     private bool Grounded = true;            // Whether or not the player is grounded.
     private bool Crouching = false;
-    private Direction direction;
+    private Direction direction = Direction.RIGHT;
 
     public int death_count = 0;
 
@@ -92,12 +92,18 @@ public class PlayerController : MonoBehaviour {
 
         if (move > 0)
         {
+            if (direction == Direction.DOWN_LEFT || direction == Direction.UP_LEFT || direction == Direction.LEFT)
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
             if (Crouching)      direction = Direction.DOWN_RIGHT;
             else if (jump > 0)  direction = Direction.UP_RIGHT;
             else                direction = Direction.RIGHT;
         }
         else if (move < 0)
         {
+            if (direction == Direction.DOWN_RIGHT || direction == Direction.UP_RIGHT || direction == Direction.RIGHT)
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            
             if (Crouching)      direction = Direction.DOWN_LEFT;
             else if (jump > 0)  direction = Direction.UP_LEFT;
             else                direction = Direction.LEFT;
