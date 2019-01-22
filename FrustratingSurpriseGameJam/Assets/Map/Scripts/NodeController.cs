@@ -49,5 +49,6 @@ public class NodeController : MonoBehaviour
         }
 
         current_node = 0;
+        TurnOnNextNode();
     }
 }

@@ -21,6 +21,12 @@ public class TrapController : MonoBehaviour {
 
         foreach (GameObject trap in traps)
             trap.GetComponent<TrapBaseClass>().Reset();
-        
+
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+
+
+        foreach (GameObject projectile in projectiles)
+            Destroy(projectile);
+
     }
 }
