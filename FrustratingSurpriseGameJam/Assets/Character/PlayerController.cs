@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour {
     public bool OnLadder { get; set; }
     public void Die()
     {
+
         death_count++;
         direction = Direction.DEAD;
         transform.position = GameObject.Find("StartingPoint").transform.position;
