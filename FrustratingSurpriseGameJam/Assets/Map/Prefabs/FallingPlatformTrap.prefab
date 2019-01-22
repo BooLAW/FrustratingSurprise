@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114794483554984324}
   m_Layer: 8
   m_Name: Small Platform
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
