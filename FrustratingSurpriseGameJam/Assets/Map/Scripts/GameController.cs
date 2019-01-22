@@ -6,12 +6,14 @@ public class GameController : MonoBehaviour {
 
     private NodeController nodeController;
     private TrapController trapController;
+    private UI_Controller uiController;
 
     // Use this for initialization
     void Start () {
         nodeController = GetComponent<NodeController>();
         trapController = GetComponent<TrapController>();
-	}
+        uiController = GameObject.Find("In-game UI").GetComponent<UI_Controller>();
+    }
 	
 
     public void ResetLevel()
@@ -22,7 +24,7 @@ public class GameController : MonoBehaviour {
 
     public void LevelComplete()
     {
-
+        uiController.RestartUI();
     }
     
 }
