@@ -26,6 +26,7 @@ public class LightningTrap : TrapBaseClass
     {
         if (state == TrapState.ACTIVATING)
         {
+            GetComponent<AudioSource>().Play();
             death_collider.enabled = true;
             spriteRenderer.enabled = true;
             state = TrapState.ACTIVE;
@@ -34,6 +35,7 @@ public class LightningTrap : TrapBaseClass
         }
         else if (state == TrapState.DEACTIVATING)
         {
+            GetComponent<AudioSource>().Stop();
             death_collider.enabled = false;
             spriteRenderer.enabled = false;
             state = TrapState.INACTIVE;

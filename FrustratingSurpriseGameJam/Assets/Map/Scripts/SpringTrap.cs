@@ -19,6 +19,7 @@ public class SpringTrap : TrapBaseClass
         {
             state = TrapState.ACTIVE;
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(ejection_force);
+            GetComponent<AudioSource>().Play();
             reset_timer = Time.time;
         }
     }

@@ -16,6 +16,7 @@ public class NodeController : MonoBehaviour
         {
             node.activated = true;
             node.spriteRenderer.sprite = node.sprite_on;
+            node.GetComponent<AudioSource>().Play();
             current_node++;
 
             if (current_node == node_num)
