@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public enum Direction { LEFT, RIGHT, UP, DOWN, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT, DEAD };
+    public enum Direction { LEFT, RIGHT, UP, UP_LEFT, UP_RIGHT, DEAD };
     [SerializeField] public float MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
     [SerializeField] public float CrouchSpeedMultiplier = 0.4f;     // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] public float JumpForce = 400f;                  // Amount of force added when the player jumps.
@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     private BoxCollider2D m_collider;
     
     private bool Grounded = true;            // Whether or not the player is grounded.
-    private bool Crouching = false;
     private Direction direction = Direction.RIGHT;
     private float initial_scale = 0.0f;
 
@@ -52,29 +51,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    public void Move(float move, bool crouch_pressed, int jump,bool on_ladder)
+    public void Move(float move, int jump,bool on_ladder)
     {
         if(on_ladder)
         {
-                    m_Rigidbody2D.velocity = new Vector2(0, ClimbSpeed);
+            m_Rigidbody2D.velocity = new Vector2(0, ClimbSpeed);
             return;
         }
-
-        Crouching = crouch_pressed;
-        // If crouching, check to see if the character can stand up
-        if (!crouch_pressed && m_Anim.GetBool("Crouch"))
-        {
-            RaycastHit2D[] right_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x + m_collider.size.x / 2, transform.position.y), Vector2.up, m_collider.size.y / 2 + 1, MapLayer);
-            RaycastHit2D[] left_raycast = Physics2D.RaycastAll(new Vector2(transform.position.x - m_collider.size.x / 2, transform.position.y), Vector2.up, m_collider.size.y / 2 + 1, MapLayer);
-
-            Crouching = (right_raycast.Length > 0 || left_raycast.Length > 0);
-        }
-
-        // Set whether or not the character is crouching in the animator
-        m_Anim.SetBool("Crouch", Crouching);
-
-        // Reduce the speed if crouching by the crouchSpeed multiplier
-        move = (Crouching ? move * CrouchSpeedMultiplier : move);
 
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("Speed", Mathf.Abs(move));
@@ -98,8 +81,7 @@ public class PlayerController : MonoBehaviour {
             if (transform.localScale.x != initial_scale)
                 transform.localScale = new Vector3(initial_scale, transform.localScale.y, transform.localScale.z);
 
-            if (Crouching)      direction = Direction.DOWN_RIGHT;
-            else if (jump > 0)  direction = Direction.UP_RIGHT;
+            if (jump > 0)  direction = Direction.UP_RIGHT;
             else                direction = Direction.RIGHT;
         }
         else if (move < 0)
@@ -107,8 +89,7 @@ public class PlayerController : MonoBehaviour {
             if (transform.localScale.x != -initial_scale)
                 transform.localScale = new Vector3(-initial_scale, transform.localScale.y, transform.localScale.z);
 
-            if (Crouching)      direction = Direction.DOWN_LEFT;
-            else if (jump > 0)  direction = Direction.UP_LEFT;
+            if (jump > 0)  direction = Direction.UP_LEFT;
             else                direction = Direction.LEFT;
         }
  

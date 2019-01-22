@@ -26,14 +26,13 @@ public class PlayerInput : MonoBehaviour {
     private void FixedUpdate()
     {
         // Read the inputs.
-        bool crouch = CrossPlatformInputManager.GetAxis("Vertical") < 0;
         bool climb = Input.GetKey(KeyCode.LeftShift);
         float h = CrossPlatformInputManager.GetAxis("Horizontal");
 
         if (CrossPlatformInputManager.GetAxis("Vertical") > 0 && jump == 1)
             jump = 2;
 
-        controller.Move(h, crouch, jump,climb);
+        controller.Move(h, jump,climb);
         jump = 0;
     }
 }
