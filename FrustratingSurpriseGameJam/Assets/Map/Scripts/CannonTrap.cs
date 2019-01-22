@@ -21,6 +21,7 @@ public class CannonTrap : TrapBaseClass
             shot.GetComponent<BaseShotClass>().direction = shot_direction.normalized;
             last_shot_time = Time.time;
             shots_taken++;
+            GetComponent<AudioSource>().Play();
 
             if (shots_taken >= shots_until_sleep && shots_until_sleep != -1)
                 childReset();

@@ -15,7 +15,10 @@ public class NodeController : MonoBehaviour
         if (node.id == current_node)
         {
             node.activated = true;
+            node.spriteRenderer.sprite = node.sprite_on;
+            node.GetComponent<AudioSource>().Play();
             current_node++;
+
             if (current_node == node_num)
                 gameObject.GetComponent<GameController>().LevelComplete();
         }
@@ -26,7 +29,11 @@ public class NodeController : MonoBehaviour
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Node");
 
         foreach (GameObject node in nodes)
-            node.GetComponent<NodeBehavior>().activated = false;
+        {
+            NodeBehavior nodeBehavior = node.GetComponent<NodeBehavior>();
+            nodeBehavior.activated = false;
+            nodeBehavior.spriteRenderer.sprite = nodeBehavior.sprite_off;
+        }
 
         current_node = 0;
     }

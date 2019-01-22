@@ -11,13 +11,15 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float LightJumpForce = 200f;                  // Amount of force added when the player jumps.
     [SerializeField] public float ClimbSpeed = 6f;
     [SerializeField] private LayerMask MapLayer;                  // A mask determining what is ground to the character
+
     private Animator m_Anim;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
     private BoxCollider2D m_collider;
     
     private bool Grounded = true;            // Whether or not the player is grounded.
     private bool Crouching = false;
-    private Direction direction;
+    private Direction direction = Direction.RIGHT;
+    private float initial_scale = 0.0f;
 
     public int death_count = 0;
 
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_collider = GetComponent<BoxCollider2D>();
         MapLayer = LayerMask.GetMask("MapLayer");
+        initial_scale = transform.localScale.x;
     }
 
 
@@ -92,12 +95,18 @@ public class PlayerController : MonoBehaviour {
 
         if (move > 0)
         {
+            if (transform.localScale.x != initial_scale)
+                transform.localScale = new Vector3(initial_scale, transform.localScale.y, transform.localScale.z);
+
             if (Crouching)      direction = Direction.DOWN_RIGHT;
             else if (jump > 0)  direction = Direction.UP_RIGHT;
             else                direction = Direction.RIGHT;
         }
         else if (move < 0)
         {
+            if (transform.localScale.x != -initial_scale)
+                transform.localScale = new Vector3(-initial_scale, transform.localScale.y, transform.localScale.z);
+
             if (Crouching)      direction = Direction.DOWN_LEFT;
             else if (jump > 0)  direction = Direction.UP_LEFT;
             else                direction = Direction.LEFT;
@@ -105,8 +114,10 @@ public class PlayerController : MonoBehaviour {
  
     }
     public bool OnLadder { get; set; }
+
     public void Die()
     {
+        GetComponent<AudioSource>().Play();
         death_count++;
         direction = Direction.DEAD;
         transform.position = GameObject.Find("StartingPoint").transform.position;

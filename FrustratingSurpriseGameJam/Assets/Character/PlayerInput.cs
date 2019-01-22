@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour {
     private void FixedUpdate()
     {
         // Read the inputs.
-        bool crouch = Input.GetKey(KeyCode.LeftControl);
+        bool crouch = CrossPlatformInputManager.GetAxis("Vertical") < 0;
         bool climb = Input.GetKey(KeyCode.LeftShift);
         float h = CrossPlatformInputManager.GetAxis("Horizontal");
 
