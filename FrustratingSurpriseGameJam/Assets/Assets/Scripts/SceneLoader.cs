@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class SceneLoader : MonoBehaviour {
 
-	// Use this for initialization
-	void Start ()
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
