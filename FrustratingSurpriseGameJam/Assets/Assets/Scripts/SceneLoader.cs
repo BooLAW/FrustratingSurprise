@@ -24,7 +24,6 @@ public class SceneLoader : MonoBehaviour {
 
     public void QuitGame()
     {
-        Debug.Log("fdkjhsdf");
         Application.Quit();
     }
 	
