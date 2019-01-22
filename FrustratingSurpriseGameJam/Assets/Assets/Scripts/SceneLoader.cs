@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement; 
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
 
@@ -10,16 +8,11 @@ public class SceneLoader : MonoBehaviour {
     {
         DontDestroyOnLoad(transform.gameObject);
     }
-
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
+    
 
     public void LoadSceneByName(string name)
     {
-        UnityEditor.SceneManagement.EditorSceneManager.LoadScene(name);
+        SceneManager.LoadScene(name);
     }
 
     public void QuitGame()
