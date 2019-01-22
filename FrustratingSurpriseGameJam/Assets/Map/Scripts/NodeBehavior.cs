@@ -22,8 +22,7 @@ public class NodeBehavior : MonoBehaviour
     {
         if (col.gameObject.name == "Player")
             nodeController.OnNodeActivated(this);
-
-        spriteRenderer.sprite = sprite_on;
+        
     }
 
 }
