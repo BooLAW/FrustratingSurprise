@@ -26,7 +26,11 @@ public class NodeController : MonoBehaviour
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Node");
 
         foreach (GameObject node in nodes)
-            node.GetComponent<NodeBehavior>().activated = false;
+        {
+            NodeBehavior nodeBehavior = node.GetComponent<NodeBehavior>();
+            nodeBehavior.activated = false;
+            nodeBehavior.spriteRenderer.sprite = nodeBehavior.sprite_off;
+        }
 
         current_node = 0;
     }
