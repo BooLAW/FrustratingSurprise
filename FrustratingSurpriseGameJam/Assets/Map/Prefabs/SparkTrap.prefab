@@ -65,10 +65,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4332103019179908}
   - component: {fileID: 212267964506295790}
-  - component: {fileID: 61806086318206708}
   - component: {fileID: 50324381245011522}
   - component: {fileID: 114489006324578794}
   - component: {fileID: 95331101017677312}
+  - component: {fileID: 58136039275737352}
   m_Layer: 0
   m_Name: SparkTrap
   m_TagString: Trap
@@ -180,31 +180,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61806086318206708
-BoxCollider2D:
+--- !u!58 &58136039275737352
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507078393235388}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8be6341e1ce3f4cec9902bc34f72d20a, type: 2}
-  m_IsTrigger: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.62500954, y: 0.6252203}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.2326965, y: 1.2320957}
-  m_EdgeRadius: 0
+  m_Radius: 0.1
 --- !u!95 &95331101017677312
 Animator:
   serializedVersion: 3

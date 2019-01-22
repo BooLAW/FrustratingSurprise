@@ -78,9 +78,9 @@ public class PlayerController : MonoBehaviour {
 
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("Speed", Mathf.Abs(move));
-
+        
         // Move the character
-        m_Rigidbody2D.velocity = new Vector2(move * MaxSpeed, m_Rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = new Vector2(move * MaxSpeed , m_Rigidbody2D.velocity.y);
 
         // If the player should jump...
         if (Grounded && jump > 0 && m_Anim.GetBool("Ground"))
