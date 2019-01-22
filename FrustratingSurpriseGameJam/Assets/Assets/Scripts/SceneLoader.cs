@@ -21,6 +21,12 @@ public class SceneLoader : MonoBehaviour {
     {
         UnityEditor.SceneManagement.EditorSceneManager.LoadScene(name);
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("fdkjhsdf");
+        Application.Quit();
+    }
 	
 	// Update is called once per frame
 	void Update () {

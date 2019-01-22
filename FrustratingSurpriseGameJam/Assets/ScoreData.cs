@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ScoreData : MonoBehaviour
 {
-    private int current_level; 
+    public int current_level; 
 
-    private int total_score;
-    private int total_deaths;
-    private float total_time;
-  
-    private int current_score;
-    private int current_deaths;
-    private float current_time;
+    public int total_score;
+    public int total_deaths;
+    public float total_time;
+
+    public int current_score;
+    public int current_deaths;
+    public float current_time;
 
     void Awake()
     {
@@ -22,15 +22,7 @@ public class ScoreData : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        current_level = 3;
-
-        total_score = 4;
-        total_deaths = 4;
-        total_time = 4;
-
-        current_score = 4;
-        current_deaths = 4;
-        current_time = 4;
+     
     }
 	
 	// Update is called once per frame
@@ -38,4 +30,23 @@ public class ScoreData : MonoBehaviour
     {
 		
 	}
+
+    void SetCurrentDeaths(int deaths)
+    {
+        current_deaths = deaths;
+        total_deaths += current_deaths; 
+    }
+
+    void SetCurrentTime(float time)
+    {
+        current_time = time;
+        total_time += current_time;
+    }
+
+    void SetCurrentScore(int score)
+    {
+        current_score = score;
+        total_score += current_score;
+    }
 }
+   
