@@ -53,6 +53,7 @@ public class LightningTrap : TrapBaseClass
 
     override public void childReset()
     {
+        GetComponent<AudioSource>().Stop();
         death_collider.enabled = false;
         spriteRenderer.enabled = false;
         state = TrapState.INACTIVE;

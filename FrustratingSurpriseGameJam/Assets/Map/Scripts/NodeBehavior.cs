@@ -18,6 +18,8 @@ public class NodeBehavior : MonoBehaviour
 
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Player")
